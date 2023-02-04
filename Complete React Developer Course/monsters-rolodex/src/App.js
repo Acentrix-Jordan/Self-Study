@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 // Components
@@ -7,6 +7,31 @@ import Searchbox from "./components/search-box/search-box.component";
 
 const App = () => {
 	const [searchField, setSearchField] = useState(""); //[value, setValue]
+	const [monsters, setMonsters] = useState([]);
+	const [filteredMonsters, setFilteredMonsters] = useState(monsters);
+
+	/**
+	 * Use effect requires two parameters, the first is a callback function and
+	 * the second is an array of dependencies.
+	 *
+	 * When a value in its dependencies changes, it will then fire the CB function
+	 *
+	 * For our fetch call, we only want our app to do the fetch when the components
+	 * mounts, so we pass an empty array.
+	 */
+	useEffect(() => {
+		fetch("https://jsonplaceholder.typicode.com/users")
+			.then((response) => response.json())
+			.then((users) => setMonsters(users));
+	}, []);
+
+	useEffect(() => {
+		const filteredMonsters = monsters.filter((monster) => {
+			return monster.name.toLocaleLowerCase().includes(searchField);
+		});
+
+		setFilteredMonsters(filteredMonsters);
+	}, [monsters, searchField]);
 
 	const onSearchChange = (event) => {
 		const searchFieldString = event.target.value.toLocaleLowerCase();
@@ -25,37 +50,5 @@ const App = () => {
 		</div>
 	);
 };
-
-class App1 extends Component {
-	constructor() {
-		super();
-
-		this.state = {
-			monsters: [],
-			searchString: "",
-		};
-	}
-
-	componentDidMount() {
-		fetch("https://jsonplaceholder.typicode.com/users")
-			.then((response) => response.json())
-			.then((users) => {
-				this.setState(() => {
-					return { monsters: users };
-				});
-			});
-	}
-
-	render() {
-		const { monsters, searchString } = this.state;
-		const { onSearchChange } = this;
-
-		const filteredMonsters = monsters.filter((monster) => {
-			return monster.name
-				.toLowerCase()
-				.includes(searchString.toLowerCase());
-		});
-	}
-}
 
 export default App;
