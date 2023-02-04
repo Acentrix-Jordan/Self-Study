@@ -1,24 +1,19 @@
-import { Component } from "react";
-
 import "./card.style.css";
 
-class Card extends Component {
-	render() {
-		const { id, name, email } = this.props.item;
-		return (
-			<div
-				key={id}
-				className="card-container"
-			>
-				<img
-					src={`https://robohash.org/${id}?set=set2&size=180x180`}
-					alt="monster"
-				/>
-				<h2>{name}</h2>
-				<p>{email}</p>
-			</div>
-		);
-	}
-}
+const Card = ({ monster }) => {
+	return (
+		<div
+			key={monster.id}
+			className="card-container"
+		>
+			<img
+				src={`https://robohash.org/${monster.id}?set=set2&size=180x180`}
+				alt="monster"
+			/>
+			<h2>{monster.name}</h2>
+			<p>{monster.email}</p>
+		</div>
+	);
+};
 
 export default Card;
