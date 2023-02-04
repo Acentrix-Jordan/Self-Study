@@ -9,7 +9,6 @@ const App = () => {
 	const [searchField, setSearchField] = useState(""); //[value, setValue]
 	const [monsters, setMonsters] = useState([]);
 	const [filteredMonsters, setFilteredMonsters] = useState(monsters);
-
 	/**
 	 * Use effect requires two parameters, the first is a callback function and
 	 * the second is an array of dependencies.
