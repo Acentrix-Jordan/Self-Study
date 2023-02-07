@@ -1,4 +1,4 @@
-# Firebase
+# Firebase Authentication
 
 We will be using firebase in this project to handle our authentication and Database management.
 
@@ -144,3 +144,9 @@ const logGoogleUser = async () => {
 		console.log(response);
 	};
 ```
+
+## Note
+
+Just because a user has been authenticated it does not mean they can be found in our DB, we still need to create user record in our Firebase Firestore
+
+Head over to the FirebaseFirestore Doc file to learn more
