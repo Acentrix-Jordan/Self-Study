@@ -19,7 +19,7 @@ const SignUpForm = () => {
 	const [formFields, setFormFields] = useState(defaultFormFields);
 	const { displayName, email, password, confirmPassword } = formFields;
 
-	const resetFormField = () => {
+	const resetFormFields = () => {
 		setFormFields(defaultFormFields);
 	};
 
@@ -43,7 +43,7 @@ const SignUpForm = () => {
 				displayName,
 			});
 
-			resetFormField();
+			resetFormFields();
 		} catch (error) {
 			if (error.code == "auth/email-already-in-use") {
 				alert("Sorry, that email is already in use");
