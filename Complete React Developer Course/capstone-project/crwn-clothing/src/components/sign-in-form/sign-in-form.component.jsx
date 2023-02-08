@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 
 // Authentication Helper Functions
 import {
@@ -14,9 +14,6 @@ import FormInput from "../form-input/form-input.component";
 // Styles
 import "./sign-in-form.style.scss";
 
-// Context
-import { UserContext } from "../../contexts/user.context";
-
 const defaultFormFields = {
 	email: "",
 	password: "",
@@ -25,8 +22,6 @@ const defaultFormFields = {
 const SignInForm = () => {
 	const [formFields, setFormFields] = useState(defaultFormFields);
 	const { email, password } = formFields;
-
-	const { setCurrentUser } = useContext(UserContext);
 
 	// Form Handler
 	const handleChange = (event) => {
@@ -42,10 +37,7 @@ const SignInForm = () => {
 
 	// Google Sign in
 	const signInWithGoogle = async () => {
-		const { user } = await signInWithGooglePopup();
-		await createUserDocumentFromAuth(user);
-
-		setCurrentUser(user);
+		await signInWithGooglePopup();
 	};
 
 	// Email and Password Submit
@@ -54,12 +46,7 @@ const SignInForm = () => {
 		event.preventDefault();
 
 		try {
-			const { user } = await signInAuthUserWithEmailAndPassword(
-				email,
-				password
-			);
-
-			setCurrentUser(user);
+			await signInAuthUserWithEmailAndPassword(email, password);
 
 			resetFormFields();
 		} catch (error) {

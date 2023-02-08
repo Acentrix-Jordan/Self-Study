@@ -6,6 +6,7 @@ import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
 	signOut,
+	onAuthStateChanged,
 } from "firebase/auth";
 
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
@@ -32,6 +33,7 @@ googleProvider.setCustomParameters({
 });
 
 export const auth = getAuth();
+
 export const signInWithGooglePopup = () =>
 	signInWithPopup(auth, googleProvider);
 
@@ -94,3 +96,10 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
  */
 
 export const signOutAuthUser = () => signOut(auth);
+
+/**
+ * On  Auth State Changed Listener
+ */
+
+export const onAuthStateChangedListener = (callback) =>
+	onAuthStateChanged(auth, callback);
