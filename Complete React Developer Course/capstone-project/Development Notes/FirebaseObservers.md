@@ -23,3 +23,11 @@ export const onAuthStateChangedListener = (callback) => {
 The call back we pass will be fired each time the auth state changes
 
 onAuthStateChanged is an open listener, so it is always active, this is not good for performance (memory leak), so when the UserContext unmounts we need to stop this listener
+
+# Observer Pattern
+
+Listeners have 3 methods
+
+1. next: (nextval) => { //This is our code }
+2. error: (error) => { // do something with error }
+3. complete: () => { //do something when finished }
