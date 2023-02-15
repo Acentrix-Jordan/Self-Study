@@ -5,6 +5,10 @@ import { Link, Outlet } from "react-router-dom";
 import "./navigation.style.scss";
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 
+// Components
+import CartIcon from "../../components/cart-icon/cart-icon.component";
+import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
+
 // Context
 import { UserContext } from "../../contexts/user.context";
 
@@ -45,7 +49,9 @@ const Navigation = () => {
 							Sign In
 						</Link>
 					)}
+					<CartIcon />
 				</div>
+				<CartDropdown />
 			</div>
 			<Outlet />
 		</>
