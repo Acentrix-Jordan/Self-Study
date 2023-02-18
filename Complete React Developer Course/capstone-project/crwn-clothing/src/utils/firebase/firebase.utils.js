@@ -16,6 +16,8 @@ import {
 	setDoc,
 	collection,
 	writeBatch,
+	query,
+	getDocs,
 } from "firebase/firestore";
 
 // Your web app's Firebase configuration
@@ -47,6 +49,11 @@ export const signInWithGooglePopup = () =>
 // Instantiate Database
 export const db = getFirestore();
 
+/**
+ * Add Data to Database
+ * @param collectionKey - Collection Name
+ * @param objectsToAdd - JSON Data
+ */
 export const addCollectionAndDocuments = async (
 	collectionKey,
 	objectsToAdd
@@ -63,9 +70,29 @@ export const addCollectionAndDocuments = async (
 	console.log("done");
 };
 
+/**
+ * Get Data from Database
+ */
+export const getCollectionAndDocuments = async () => {
+	const collectionRef = collection(db, "categories");
+
+	const q = query(collectionRef);
+
+	const querySnapshot = await getDocs(q);
+
+	const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+		const { title, items } = docSnapshot.data();
+
+		acc[title.toLowerCase()] = items;
+
+		return acc;
+	}, {});
+
+	return categoryMap;
+};
+
 export const createUserDocumentFromAuth = async (
 	userAuth,
-	// Object
 	additionalInformation = {}
 ) => {
 	// This protects our code if no userAuth is passed
@@ -107,7 +134,6 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
 /**
  * Sign in User with Email and Password
  */
-
 export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 	if (!email || !password) return;
 
@@ -117,12 +143,10 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 /**
  * Sign Out Function
  */
-
 export const signOutAuthUser = () => signOut(auth);
 
 /**
  * On  Auth State Changed Listener
  */
-
 export const onAuthStateChangedListener = (callback) =>
 	onAuthStateChanged(auth, callback);
