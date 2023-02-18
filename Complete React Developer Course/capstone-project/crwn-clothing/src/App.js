@@ -4,6 +4,7 @@ import Home from "./routes/home/home.component";
 import Navigation from "./routes/navigation/navigation.component";
 import Shop from "./routes/shop/shop.component";
 import AuthenticationForm from "./routes/authentication/authentication.component";
+import Checkout from "./routes/checkout/checkout.component";
 
 const App = () => {
 	return (
@@ -23,6 +24,10 @@ const App = () => {
 				<Route
 					path="auth"
 					element={<AuthenticationForm />}
+				/>
+				<Route
+					path="checkout"
+					element={<Checkout />}
 				/>
 			</Route>
 		</Routes>
