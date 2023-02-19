@@ -2,17 +2,17 @@ import { useState } from "react";
 
 // Authentication Helper Functions
 import {
-	createUserDocumentFromAuth,
 	signInAuthUserWithEmailAndPassword,
 	signInWithGooglePopup,
 } from "../../utils/firebase/firebase.utils";
 
 // Components
-import Button from "../button/button.component";
+import CustomButton, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
 
 // Styles
-import "./sign-in-form.style.scss";
+import "./sign-in-form.style.jsx";
+import { ButtonsContainer, SignInContainer } from "./sign-in-form.style.jsx";
 
 const defaultFormFields = {
 	email: "",
@@ -64,7 +64,7 @@ const SignInForm = () => {
 	};
 
 	return (
-		<div className="sign-in-container">
+		<SignInContainer>
 			<h2>Already have an account?</h2>
 			<span>Sign in with your email and password or Google account</span>
 			<form onSubmit={handleSubmit}>
@@ -88,20 +88,20 @@ const SignInForm = () => {
 						value: password,
 					}}
 				/>
-				<div className="buttons-container">
-					<Button
+				<ButtonsContainer>
+					<CustomButton
 						content="Sign In"
 						type="submit"
 					/>
-					<Button
+					<CustomButton
 						type="button"
 						content="Sign In with Google"
-						buttonType={"google"}
+						buttonType={BUTTON_TYPE_CLASSES.google}
 						onClick={signInWithGoogle}
 					/>
-				</div>
+				</ButtonsContainer>
 			</form>
-		</div>
+		</SignInContainer>
 	);
 };
 

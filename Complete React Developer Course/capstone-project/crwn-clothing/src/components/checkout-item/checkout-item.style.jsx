@@ -1,4 +1,6 @@
-.checkout-item-container {
+import styled from "styled-components";
+
+export const CheckoutItemContainer = styled.div`
 	width: 100%;
 	display: flex;
 	min-height: 100px;
@@ -7,7 +9,7 @@
 	font-size: 20px;
 	align-items: center;
 
-	.checkout-item-image-container {
+	.image-container {
 		width: 23%;
 		padding-right: 15px;
 
@@ -16,13 +18,13 @@
 			height: 100%;
 		}
 	}
-	.checkout-item-name,
-	.checkout-item-quantity,
-	.checkout-item-price {
+	.name,
+	.quantity,
+	.price {
 		width: 23%;
 	}
 
-	.checkout-item-quantity {
+	.quantity {
 		display: flex;
 
 		.arrow {
@@ -34,8 +36,8 @@
 		}
 	}
 
-	.checkout-item-remove-button {
+	.remove-button {
 		padding-left: 12px;
 		cursor: pointer;
 	}
-}
+`;

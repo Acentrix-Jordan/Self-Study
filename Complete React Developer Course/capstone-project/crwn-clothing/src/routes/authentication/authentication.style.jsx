@@ -1,4 +1,6 @@
-.authentication-container {
+import styled from "styled-components";
+
+export const AuthenticationContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
 	margin: 2rem auto;
@@ -8,4 +10,4 @@
 	> * {
 		padding: 1rem;
 	}
-}
+`;
