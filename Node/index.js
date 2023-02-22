@@ -1,23 +1,11 @@
-const http = require("node:http");
+const fs = require("node:fs");
 
-const server = http.createServer((req, res) => {
-	const superHero = {
-		firstName: "Bruce",
-		lastName: "Wayne",
-	};
+// Crypto provide cryptography
+const crypto = require("node:crypto");
 
-	// HTTP success response
-	// .writeHead(ResponseCode, ContentTypeOfResponse)
-	res.writeHead(200, { "Content-Type": "application/json" });
-	res.end(JSON.stringify(superHero));
-});
+// Common method used to hash passwords in node
+// crypto.pbkdf2()
 
-// .listen(PortNumber, Callback)
-server.listen(3000, () => {
-	console.log("Server running on port 3000");
-});
-
-// localhost:3000
-
-// LESSON 33
-// https://www.youtube.com/watch?v=50YtINv8Y-o&list=PLC3y8-rFHvwh8shCMHFA5kWxD9PaPwxaY&index=33
+const start = Date.now();
+crypto.pbkdf2("password", "salt", 100000, 512, "sha512");
+console.log("Hash: ", Date.now() - start);
