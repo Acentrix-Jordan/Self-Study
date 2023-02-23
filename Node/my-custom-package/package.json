@@ -1,0 +1,10 @@
+{
+	"name": "my-custom-package",
+	"version": "1.0.0",
+	"description": "Jordan Wilson's greeting package",
+	"keywords": [
+		"Jordan Wilson",
+		"greet"
+	],
+	"main": "index.js"
+}
